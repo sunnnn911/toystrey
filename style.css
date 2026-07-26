@@ -484,23 +484,31 @@ input {
 }
 
 
-.foot-name {
+.foot-name{
+  position:absolute;
 
-  position: absolute;
+  /* 발바닥 중심에 배치 */
+  transform:translate(-50%,-50%) rotate(0deg);
 
-  transform:
-    translate(-50%, -50%);
+  /* 세로 방향 */
+  writing-mode:vertical-rl;
+  text-orientation:upright;
 
-  transform-origin: center;
+  /* 글자 스타일 */
+  font-weight:800;
+  white-space:nowrap;
+  pointer-events:none;
 
-  white-space: nowrap;
+  /* 기존보다 작게 */
+  font-size:clamp(7px, 2.5vw, 14px);
 
-  pointer-events: none;
+  /* 발바닥 안에서 넘치지 않도록 */
+  line-height:1;
+  max-height:38%;
+  overflow:hidden;
 
-  font-weight: 800;
-
-  line-height: 1;
-
+  /* 글자가 너무 길 경우 축소 */
+  letter-spacing:-0.5px;
 }
 
 
