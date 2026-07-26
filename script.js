@@ -99,7 +99,7 @@ const beh = {
 // 화면/캐릭터 크기 정보
 const layout = { roomW:0, roomH:0, cw:0, ch:0, aspect:1.15, home:{x:0,y:0}, bounds:{minX:0,maxX:0,minY:0,maxY:0} };
 
-const IDLE_RESUME_MS = 2500;  // 마우스가 이만큼 멈추면 다시 살아 움직임
+const IDLE_RESUME_MS = 10000;  // 10초 동안 마우스가 멈추면 다시 살아 움직임(시작 직후에도 동일)
 let idleTimer = null;
 
 
@@ -196,8 +196,8 @@ function startSession(){
   const name = el.nameInput.value.trim();
   if (graphemeCount(name) < 1) return;
 
-  // 같은 달에 같은 이름 기록이 있으면 그 ID 재사용(랭킹 누적), 없으면 새 ID
-  state.user.id = findUserIdByName(name) || uid();
+  // 시작할 때마다 새로운 고유 ID 부여(홈으로 나갔다 오면 새 방문 기록으로 집계됨)
+  state.user.id = uid();
   state.user.name = name;
 
   state.elapsedMs = 0;
@@ -328,8 +328,8 @@ function recomputeLayout(){
 
   // 이동 범위(바닥 영역에서만 돌아다니도록)
   const pad = layout.roomW * 0.03;
-  const minBase = layout.roomH * 0.60;   // 발이 닿는 하한선
-  const maxBase = layout.roomH * 0.98;
+  const minBase = layout.roomH * 0.72;   // 나무 바닥 위에서만 돌아다니도록
+  const maxBase = layout.roomH * 0.97;
   layout.bounds.minX = pad;
   layout.bounds.maxX = Math.max(pad, layout.roomW - layout.cw - pad);
   layout.bounds.minY = Math.max(0, minBase - layout.ch);
@@ -494,11 +494,13 @@ function findUserIdByName(name){
 }
 function saveRecord(){
   if (!state.user.id) return;
+  if (state.elapsedMs < 1000) return;          // 1초 미만은 기록하지 않음
   const store = loadStore();
   const mk = monthKey();
   if (!store[mk]) store[mk] = {};
-  const cur = store[mk][state.user.id] || { name: state.user.name, seconds: 0 };
+  const cur = store[mk][state.user.id] || { name: state.user.name, seconds: 0, charId: state.currentCharId };
   cur.name = state.user.name;
+  cur.charId = state.currentCharId;             // 마지막으로 선택한 캐릭터
   cur.seconds += Math.floor(state.elapsedMs / 1000);
   store[mk][state.user.id] = cur;
   saveStore(store);
@@ -506,13 +508,14 @@ function saveRecord(){
 function renderRanking(){
   const month = loadStore()[monthKey()] || {};
   const rows = Object.entries(month)
-    .map(([id, v]) => ({ id, name: v.name, seconds: v.seconds }))
+    .map(([id, v]) => ({ id, name: v.name, seconds: v.seconds, charId: v.charId }))
     .sort((a, b) => b.seconds - a.seconds)
-    .slice(0, 8);
+    .slice(0, 10);
 
   el.rankingList.innerHTML = "";
   if (rows.length === 0){
     const li = document.createElement("li");
+    li.className = "empty";
     li.textContent = "아직 기록이 없어.";
     el.rankingList.appendChild(li);
     return;
@@ -520,13 +523,30 @@ function renderRanking(){
   rows.forEach((r, i) => {
     const li = document.createElement("li");
     if (r.id === state.user.id) li.classList.add("me");
+
+    const rank = document.createElement("span");
+    rank.className = "rank-num";
+    rank.textContent = i + 1;
+
+    const face = document.createElement("img");
+    face.className = "rank-face";
+    const c = getChar(r.charId);
+    face.src = c.image; face.alt = c.name; face.draggable = false;
+    face.onerror = () => {
+      const fb = document.createElement("span");
+      fb.className = "rank-face fallback";
+      face.replaceWith(fb);
+    };
+
     const nm = document.createElement("span");
     nm.className = "rank-name";
-    nm.textContent = `${i + 1}. ${r.name}`;
+    nm.textContent = r.name;
+
     const tm = document.createElement("span");
     tm.className = "rank-time";
     tm.textContent = formatTime(r.seconds * 1000);
-    li.appendChild(nm); li.appendChild(tm);
+
+    li.append(rank, face, nm, tm);
     el.rankingList.appendChild(li);
   });
 }
@@ -542,7 +562,7 @@ function goHome(){
   state.watching = false;
   state.elapsedMs = 0;
   showScreen("name");
-  el.nameInput.value = state.user.name; // 편의상 이름 유지(수정 가능)
+  el.nameInput.value = "";   // 새 방문자로 다시 시작(다음 START 때 새 ID 부여)
   updateNameState();
 }
 
