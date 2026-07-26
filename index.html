@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>장난감 공부방</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main id="room" class="room">
+
+    <!-- 하늘색 벽 -->
+    <div class="wall-clouds" aria-hidden="true">
+      <span class="cloud c1"></span>
+      <span class="cloud c2"></span>
+      <span class="cloud c3"></span>
+      <span class="cloud c4"></span>
+      <span class="cloud c5"></span>
+    </div>
+
+    <!-- 벽과 바닥 사이 -->
+    <div class="wainscot" aria-hidden="true"></div>
+
+    <!-- 나무 바닥 -->
+    <div class="floor" aria-hidden="true"></div>
+
+    <!-- 캐릭터 그림자 -->
+    <div class="ground-shadow" aria-hidden="true"></div>
+
+
+    <!-- ============================= -->
+    <!-- 공부 화면 상단 -->
+    <!-- ============================= -->
+
+    <div id="topbar" class="topbar hidden">
+
+      <button id="homeBtn" class="soft-btn">
+        HOME
+      </button>
+
+      <div id="timer" class="timer">
+        00:00:00
+      </div>
+
+      <button id="finishBtn" class="soft-btn">
+        FINISH
+      </button>
+
+    </div>
+
+
+    <!-- 공부 상태 -->
+    <div id="statusChip" class="status-chip hidden">
+      공부 중
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- 장난감 캐릭터 -->
+    <!-- ============================= -->
+
+    <div id="character" class="character hidden">
+
+      <img
+        id="charImg"
+        src=""
+        alt=""
+        draggable="false"
+      >
+
+      <div
+        id="charFallback"
+        class="char-fallback hidden"
+      ></div>
+
+      <div
+        id="footName"
+        class="foot-name"
+      ></div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- 이름 입력 화면 -->
+    <!-- ============================= -->
+
+    <section
+      id="nameScreen"
+      class="overlay"
+    >
+
+      <div class="card name-card">
+
+        <input
+          id="nameInput"
+          class="name-input"
+          type="text"
+          autocomplete="off"
+          maxlength="20"
+          placeholder="이름을 지어줘"
+        >
+
+        <div
+          id="nameHint"
+          class="hint"
+        >
+          한국어·영어·중국어·아랍어 등 모두 가능 · 0/5
+        </div>
+
+        <button
+          id="startBtn"
+          class="start-btn"
+          disabled
+        >
+          START
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- 캐릭터 선택 화면 -->
+    <!-- ============================= -->
+
+    <section
+      id="selectScreen"
+      class="overlay hidden"
+    >
+
+      <div class="card select-card">
+
+        <h2 class="title small">
+          누구로 바꿀까?
+        </h2>
+
+        <div
+          id="charGrid"
+          class="char-grid"
+        ></div>
+
+        <button
+          id="closeSelect"
+          class="soft-btn wide"
+        >
+          닫기
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- 결과 화면 -->
+    <!-- ============================= -->
+
+    <section
+      id="resultScreen"
+      class="overlay hidden"
+    >
+
+      <div class="card result-card">
+
+        <h2 class="title small">
+          오늘의 공부
+        </h2>
+
+
+        <div class="result-top">
+
+          <div class="result-char">
+
+            <img
+              id="resultImg"
+              src=""
+              alt=""
+              draggable="false"
+            >
+
+            <div
+              id="resultName"
+              class="result-name"
+            ></div>
+
+          </div>
+
+
+          <div class="result-time-wrap">
+
+            <div class="result-label">
+              공부 시간
+            </div>
+
+            <div
+              id="resultTime"
+              class="result-time"
+            >
+              00:00:00
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="ranking">
+
+          <div class="ranking-head">
+            MONTHLY STUDY
+          </div>
+
+          <ol
+            id="rankingList"
+            class="ranking-list"
+          ></ol>
+
+          <div class="ranking-foot">
+            RESETS EVERY MONTH
+          </div>
+
+        </div>
+
+
+        <button
+          id="againBtn"
+          class="start-btn"
+        >
+          처음으로
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
