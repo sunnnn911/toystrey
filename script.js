@@ -28,42 +28,42 @@
    ========================================================== */
 const CHARACTERS = [
   {
-    id:"mickey", name:"미키", image:"assets/mickey.png",
+    id:"mickey", name:"미키", image:"mickey.png",
     nameTop:88, nameLeft:35, nameRot:2,  nameScale:0.9,  nameColor:"#3a2a1c",
     speed:26, pauseChance:0.35, lookTilt:4, leanDeg:2, restMin:1200, restMax:2600
   },
   {
-    id:"pooh", name:"곰돌이 푸", image:"assets/pooh.png",
+    id:"pooh", name:"곰돌이 푸", image:"pooh.png",
     nameTop:86, nameLeft:39, nameRot:0,  nameScale:0.8,  nameColor:"#4a3527",
     speed:18, pauseChance:0.5,  lookTilt:3, leanDeg:2, restMin:1600, restMax:3200
   },
   {
-    id:"felix", name:"펠릭스", image:"assets/felix.png",
+    id:"felix", name:"펠릭스", image:"felix.png",
     nameTop:82, nameLeft:40, nameRot:0,  nameScale:0.8,  nameColor:"#ffffff",
     speed:40, pauseChance:0.22, lookTilt:5, leanDeg:3, restMin:800,  restMax:1800
   },
   {
-    id:"sherlock", name:"셜록", image:"assets/sherlock.png",
+    id:"sherlock", name:"셜록", image:"sherlock.png",
     nameTop:85, nameLeft:31, nameRot:-8, nameScale:0.78, nameColor:"#fff2dd",
     speed:28, pauseChance:0.4,  lookTilt:6, leanDeg:2, restMin:1600, restMax:3400
   },
   {
-    id:"alice", name:"앨리스", image:"assets/alice.png",
+    id:"alice", name:"앨리스", image:"alice.png",
     nameTop:85, nameLeft:39, nameRot:-4, nameScale:0.78, nameColor:"#fff2dd",
     speed:22, pauseChance:0.42, lookTilt:4, leanDeg:2, restMin:1400, restMax:3000
   },
   {
-    id:"pinocchio", name:"피노키오", image:"assets/pinocchio.png",
+    id:"pinocchio", name:"피노키오", image:"pinocchio.png",
     nameTop:88, nameLeft:40, nameRot:0,  nameScale:0.78, nameColor:"#ffffff",
     speed:30, pauseChance:0.3,  lookTilt:5, leanDeg:5, restMin:900,  restMax:2000
   },
   {
-    id:"scarecrow", name:"허수아비", image:"assets/scarecrow.png",
+    id:"scarecrow", name:"허수아비", image:"scarecrow.png",
     nameTop:88, nameLeft:40, nameRot:0,  nameScale:0.8,  nameColor:"#3a2a1c",
     speed:16, pauseChance:0.45, lookTilt:6, leanDeg:6, restMin:1500, restMax:3200
   },
   {
-    id:"dracula", name:"드라큘라", image:"assets/dracula.png",
+    id:"dracula", name:"드라큘라", image:"dracula.png",
     nameTop:86, nameLeft:40, nameRot:-3, nameScale:0.78, nameColor:"#ffffff",
     speed:20, pauseChance:0.4,  lookTilt:3, leanDeg:2, restMin:1600, restMax:3400
   }
