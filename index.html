@@ -10,25 +10,20 @@
   <!-- 방(무대) -->
   <div id="room" class="room">
 
-    <!-- 창문 햇빛 -->
-    <div class="window" aria-hidden="true">
-      <div class="sun-glow"></div>
-      <div class="window-frame">
-        <span></span><span></span>
-      </div>
+    <!-- 하늘색 구름 벽 -->
+    <div class="wall-clouds" aria-hidden="true">
+      <span class="cloud c1"></span>
+      <span class="cloud c2"></span>
+      <span class="cloud c3"></span>
+      <span class="cloud c4"></span>
+      <span class="cloud c5"></span>
     </div>
-    <div class="sunbeam" aria-hidden="true"></div>
-
-    <!-- 카펫 -->
-    <div class="rug" aria-hidden="true"></div>
-
-    <!-- 선반 위 책 -->
-    <div class="shelf" aria-hidden="true">
-      <span class="book b1"></span>
-      <span class="book b2"></span>
-      <span class="book b3"></span>
-      <span class="book b4"></span>
-    </div>
+    <!-- 흰색 몰딩(허리 벽) -->
+    <div class="wainscot" aria-hidden="true"></div>
+    <!-- 나무 바닥 -->
+    <div class="floor" aria-hidden="true"></div>
+    <!-- 캐릭터 발밑 그림자 -->
+    <div class="ground-shadow" aria-hidden="true"></div>
 
     <!-- 상단 UI -->
     <div class="topbar" id="topbar" hidden>
@@ -37,7 +32,7 @@
       <button class="soft-btn" id="finishBtn">FINISH</button>
     </div>
 
-    <!-- 상태 안내(공부중 / 보는중) -->
+    <!-- 상태 안내 -->
     <div class="status-chip" id="statusChip" hidden>공부 중</div>
 
     <!-- 캐릭터 -->
@@ -47,18 +42,16 @@
       <div class="foot-name" id="footName"></div>
     </div>
 
-    <!-- 이름 입력 화면 -->
+    <!-- 1. 이름 입력 화면 -->
     <div class="overlay" id="nameScreen">
-      <div class="card">
-        <h1 class="title">장난감 공부방</h1>
-        <p class="subtitle">이름을 지어주면, 네가 안 볼 때 장난감이 깨어나 공부방을 돌아다녀.</p>
+      <div class="card name-card">
         <input
           id="nameInput"
           class="name-input"
           type="text"
           inputmode="text"
           autocomplete="off"
-          placeholder="이름 (최대 5글자)"
+          placeholder="이름을 지어줘"
         />
         <div class="hint" id="nameHint">한국어·영어·중국어·아랍어 등 모두 가능 · 최대 5글자</div>
         <button class="start-btn" id="startBtn" disabled>START</button>
@@ -74,7 +67,7 @@
       </div>
     </div>
 
-    <!-- 결과 화면 -->
+    <!-- 3. 결과 화면 -->
     <div class="overlay" id="resultScreen" hidden>
       <div class="card result-card">
         <h2 class="title small">오늘의 공부</h2>
