@@ -1,0 +1,932 @@
+:root {
+
+  --sky: #bfe2f0;
+  --sky-top: #d3edf7;
+
+  --wood: #e3b980;
+  --wood-2: #d3a566;
+  --wood-line: rgba(150,100,50,.14);
+
+  --wainscot: #fbf5ea;
+
+  --cream: #fffdf9;
+
+  --ink: #5f5140;
+  --ink-soft: #97836f;
+
+  --accent: #f0b48a;
+  --accent-deep: #dc9a6c;
+
+  --shadow: rgba(110,90,70,.16);
+
+}
+
+
+* {
+
+  box-sizing: border-box;
+
+  -webkit-tap-highlight-color: transparent;
+
+}
+
+
+html,
+body {
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  user-select: none;
+
+  font-family:
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    "Segoe UI",
+    system-ui,
+    sans-serif;
+
+  color: var(--ink);
+
+}
+
+
+button,
+input {
+
+  font-family: inherit;
+
+}
+
+
+/* ================================= */
+/* 공통 숨김 */
+/* ================================= */
+
+.hidden {
+
+  display: none !important;
+
+}
+
+
+/* ================================= */
+/* 방 */
+/* ================================= */
+
+.room {
+
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--sky-top) 0%,
+      var(--sky) 60%
+    );
+
+}
+
+
+/* ================================= */
+/* 구름 */
+/* ================================= */
+
+.wall-clouds {
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 74%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+}
+
+
+.cloud {
+
+  position: absolute;
+
+  width: 130px;
+  height: 48px;
+
+  background: white;
+
+  border-radius: 60px;
+
+  opacity: .95;
+
+  box-shadow:
+    36px 10px 0 -4px white,
+    -36px 12px 0 -6px white,
+    16px -14px 0 -6px white,
+    -16px -10px 0 -8px white;
+
+  animation: cloudMove linear infinite;
+
+}
+
+
+.c1 {
+
+  top: 7%;
+
+  transform: scale(1.25);
+
+  animation-duration: 95s;
+
+}
+
+
+.c2 {
+
+  top: 20%;
+
+  transform: scale(.8);
+
+  animation-duration: 72s;
+
+}
+
+
+.c3 {
+
+  top: 33%;
+
+  transform: scale(1.5);
+
+  animation-duration: 120s;
+
+}
+
+
+.c4 {
+
+  top: 13%;
+
+  transform: scale(.7);
+
+  animation-duration: 63s;
+
+}
+
+
+.c5 {
+
+  top: 44%;
+
+  transform: scale(1.05);
+
+  animation-duration: 105s;
+
+}
+
+
+@keyframes cloudMove {
+
+  from {
+
+    margin-left: -40vw;
+
+  }
+
+  to {
+
+    margin-left: 130vw;
+
+  }
+
+}
+
+
+/* ================================= */
+/* 벽과 바닥 */
+/* ================================= */
+
+.wainscot {
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: 26%;
+
+  height: 9%;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--wainscot),
+      #f2e7d5
+    );
+
+  border-top: 4px solid #efe4d0;
+
+  box-shadow:
+    0 -2px 0 rgba(255,255,255,.8),
+    0 3px 8px rgba(110,90,70,.12);
+
+}
+
+
+.floor {
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 26%;
+
+  background:
+
+    repeating-linear-gradient(
+      180deg,
+      var(--wood-line) 0 2px,
+      transparent 2px 30px
+    ),
+
+    linear-gradient(
+      180deg,
+      var(--wood),
+      var(--wood-2)
+    );
+
+}
+
+
+.ground-shadow {
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 5%;
+
+  width: min(64vw, 560px);
+  height: 11%;
+
+  transform: translateX(-50%);
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(120,80,45,.22),
+      transparent 70%
+    );
+
+  filter: blur(2px);
+
+  pointer-events: none;
+
+}
+
+
+/* ================================= */
+/* 상단바 */
+/* ================================= */
+
+.topbar {
+
+  position: absolute;
+
+  top: 16px;
+  left: 0;
+  right: 0;
+
+  z-index: 30;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+}
+
+
+.timer {
+
+  padding: 6px 16px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,.8);
+
+  box-shadow:
+    0 6px 14px var(--shadow),
+    inset 0 0 0 2px rgba(255,255,255,.7);
+
+  font-size: clamp(20px, 4.4vw, 30px);
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  font-variant-numeric: tabular-nums;
+
+}
+
+
+.soft-btn {
+
+  border: none;
+
+  cursor: pointer;
+
+  padding: 10px 16px;
+
+  border-radius: 16px;
+
+  background: rgba(255,255,255,.9);
+
+  color: var(--ink);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 6px 12px var(--shadow),
+    inset 0 0 0 2px rgba(255,255,255,.7);
+
+}
+
+
+.soft-btn:active {
+
+  transform: translateY(1px);
+
+}
+
+
+.soft-btn.wide {
+
+  width: 100%;
+
+  margin-top: 6px;
+
+}
+
+
+/* ================================= */
+/* 상태 */
+/* ================================= */
+
+.status-chip {
+
+  position: absolute;
+
+  top: 64px;
+  left: 50%;
+
+  z-index: 25;
+
+  transform: translateX(-50%);
+
+  padding: 5px 14px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,.7);
+
+  color: var(--ink-soft);
+
+  font-size: 13px;
+
+}
+
+
+.status-chip.watching {
+
+  color: var(--accent-deep);
+
+}
+
+
+/* ================================= */
+/* 캐릭터 */
+/* ================================= */
+
+.character {
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  z-index: 20;
+
+  cursor: pointer;
+
+  will-change: transform;
+
+  touch-action: none;
+
+}
+
+
+.character img {
+
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  pointer-events: none;
+
+  filter:
+    drop-shadow(
+      0 12px 10px rgba(110,90,70,.24)
+    );
+
+}
+
+
+.char-fallback {
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  aspect-ratio: 1 / 1.15;
+
+  border-radius: 40%;
+
+  background:
+    radial-gradient(
+      circle at 40% 35%,
+      #ffe9cf,
+      #f2c79c
+    );
+
+}
+
+
+.foot-name {
+
+  position: absolute;
+
+  transform:
+    translate(-50%, -50%);
+
+  transform-origin: center;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+
+  font-weight: 800;
+
+  line-height: 1;
+
+}
+
+
+/* ================================= */
+/* 오버레이 */
+/* ================================= */
+
+.overlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 50;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(90,110,120,.18);
+
+  backdrop-filter: blur(2px);
+
+}
+
+
+.card {
+
+  width: min(90vw, 400px);
+
+  padding: 26px 24px;
+
+  border-radius: 28px;
+
+  background: rgba(255,253,249,.94);
+
+  text-align: center;
+
+  box-shadow:
+    0 20px 44px var(--shadow),
+    inset 0 0 0 2px rgba(255,255,255,.7);
+
+}
+
+
+/* ================================= */
+/* 이름 */
+/* ================================= */
+
+.name-input {
+
+  width: 100%;
+
+  padding: 16px 12px;
+
+  border: 2px solid #ecd9c2;
+
+  border-radius: 18px;
+
+  outline: none;
+
+  background: #fffef9;
+
+  color: var(--ink);
+
+  font-size: 22px;
+
+  text-align: center;
+
+}
+
+
+.name-input:focus {
+
+  border-color: var(--accent);
+
+}
+
+
+.hint {
+
+  margin: 12px 0 18px;
+
+  color: var(--ink-soft);
+
+  font-size: 12px;
+
+}
+
+
+/* ================================= */
+/* 버튼 */
+/* ================================= */
+
+.start-btn {
+
+  width: 100%;
+
+  padding: 15px;
+
+  border: none;
+
+  border-radius: 18px;
+
+  cursor: pointer;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--accent),
+      var(--accent-deep)
+    );
+
+  color: white;
+
+  font-size: 17px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+}
+
+
+.start-btn:disabled {
+
+  cursor: not-allowed;
+
+  filter:
+    grayscale(.4)
+    opacity(.55);
+
+}
+
+
+/* ================================= */
+/* 캐릭터 선택 */
+/* ================================= */
+
+.select-card {
+
+  width: min(92vw, 440px);
+
+}
+
+
+.title {
+
+  margin: 0 0 14px;
+
+}
+
+
+.title.small {
+
+  font-size: 22px;
+
+}
+
+
+.char-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 10px;
+
+  margin-bottom: 14px;
+
+}
+
+
+.char-cell {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 8px 4px;
+
+  border-radius: 16px;
+
+  background: #fffef9;
+
+  box-shadow:
+    inset 0 0 0 2px #ecd9c2;
+
+  cursor: pointer;
+
+}
+
+
+.char-cell.active {
+
+  box-shadow:
+    inset 0 0 0 3px var(--accent-deep);
+
+}
+
+
+.char-cell img {
+
+  width: 100%;
+
+  height: 56px;
+
+  object-fit: contain;
+
+}
+
+
+.char-cell span {
+
+  font-size: 11px;
+
+  color: var(--ink-soft);
+
+}
+
+
+/* ================================= */
+/* 결과 */
+/* ================================= */
+
+.result-card {
+
+  width: min(92vw, 440px);
+
+}
+
+
+.result-top {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  margin-bottom: 16px;
+
+}
+
+
+.result-char {
+
+  flex: 0 0 40%;
+
+}
+
+
+.result-char img {
+
+  width: 100%;
+
+  max-height: 120px;
+
+  object-fit: contain;
+
+}
+
+
+.result-name {
+
+  margin-top: 4px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+}
+
+
+.result-time-wrap {
+
+  flex: 1;
+
+}
+
+
+.result-label {
+
+  color: var(--ink-soft);
+
+  font-size: 13px;
+
+}
+
+
+.result-time {
+
+  color: var(--accent-deep);
+
+  font-size: clamp(26px, 7vw, 38px);
+
+  font-weight: 800;
+
+  font-variant-numeric: tabular-nums;
+
+}
+
+
+/* ================================= */
+/* 랭킹 */
+/* ================================= */
+
+.ranking {
+
+  margin-bottom: 16px;
+
+  padding: 14px 16px;
+
+  border-radius: 18px;
+
+  background: #fffef9;
+
+  box-shadow:
+    inset 0 0 0 2px #ecd9c2;
+
+  text-align: left;
+
+}
+
+
+.ranking-head {
+
+  margin-bottom: 8px;
+
+  color: var(--accent-deep);
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+}
+
+
+.ranking-list {
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+
+}
+
+
+.ranking-list li {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 6px 0;
+
+  border-bottom: 1px dashed #ecdcc7;
+
+  font-size: 14px;
+
+}
+
+
+.rank-num {
+
+  width: 18px;
+
+  text-align: center;
+
+  font-weight: 800;
+
+}
+
+
+.rank-face {
+
+  width: 30px;
+
+  height: 30px;
+
+  object-fit: contain;
+
+}
+
+
+.rank-name {
+
+  flex: 1;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+}
+
+
+.rank-time {
+
+  font-variant-numeric: tabular-nums;
+
+}
+
+
+.ranking-foot {
+
+  margin-top: 8px;
+
+  color: var(--ink-soft);
+
+  font-size: 11px;
+
+  text-align: right;
+
+}
