@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>장난감 공부방</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 방(무대) -->
+  <div id="room" class="room">
+
+    <!-- 창문 햇빛 -->
+    <div class="window" aria-hidden="true">
+      <div class="sun-glow"></div>
+      <div class="window-frame">
+        <span></span><span></span>
+      </div>
+    </div>
+    <div class="sunbeam" aria-hidden="true"></div>
+
+    <!-- 카펫 -->
+    <div class="rug" aria-hidden="true"></div>
+
+    <!-- 선반 위 책 -->
+    <div class="shelf" aria-hidden="true">
+      <span class="book b1"></span>
+      <span class="book b2"></span>
+      <span class="book b3"></span>
+      <span class="book b4"></span>
+    </div>
+
+    <!-- 상단 UI -->
+    <div class="topbar" id="topbar" hidden>
+      <button class="soft-btn" id="homeBtn">HOME</button>
+      <div class="timer" id="timer">00:00:00</div>
+      <button class="soft-btn" id="finishBtn">FINISH</button>
+    </div>
+
+    <!-- 상태 안내(공부중 / 보는중) -->
+    <div class="status-chip" id="statusChip" hidden>공부 중</div>
+
+    <!-- 캐릭터 -->
+    <div class="character" id="character" hidden>
+      <img id="charImg" alt="" draggable="false" />
+      <div class="char-fallback" id="charFallback" hidden></div>
+      <div class="foot-name" id="footName"></div>
+    </div>
+
+    <!-- 이름 입력 화면 -->
+    <div class="overlay" id="nameScreen">
+      <div class="card">
+        <h1 class="title">장난감 공부방</h1>
+        <p class="subtitle">이름을 지어주면, 네가 안 볼 때 장난감이 깨어나 공부방을 돌아다녀.</p>
+        <input
+          id="nameInput"
+          class="name-input"
+          type="text"
+          inputmode="text"
+          autocomplete="off"
+          placeholder="이름 (최대 5글자)"
+        />
+        <div class="hint" id="nameHint">한국어·영어·중국어·아랍어 등 모두 가능 · 최대 5글자</div>
+        <button class="start-btn" id="startBtn" disabled>START</button>
+      </div>
+    </div>
+
+    <!-- 캐릭터 선택창 -->
+    <div class="overlay" id="selectScreen" hidden>
+      <div class="card select-card">
+        <h2 class="title small">누구로 바꿀까?</h2>
+        <div class="char-grid" id="charGrid"></div>
+        <button class="soft-btn wide" id="closeSelect">닫기</button>
+      </div>
+    </div>
+
+    <!-- 결과 화면 -->
+    <div class="overlay" id="resultScreen" hidden>
+      <div class="card result-card">
+        <h2 class="title small">오늘의 공부</h2>
+        <div class="result-top">
+          <div class="result-char">
+            <img id="resultImg" alt="" draggable="false" />
+            <div class="result-name" id="resultName"></div>
+          </div>
+          <div class="result-time-wrap">
+            <div class="result-label">공부 시간</div>
+            <div class="result-time" id="resultTime">00:00:00</div>
+          </div>
+        </div>
+
+        <div class="ranking">
+          <div class="ranking-head">MONTHLY STUDY</div>
+          <ol class="ranking-list" id="rankingList"></ol>
+          <div class="ranking-foot">RESETS EVERY MONTH</div>
+        </div>
+
+        <button class="start-btn" id="againBtn">처음으로</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
