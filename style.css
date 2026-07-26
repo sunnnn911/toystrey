@@ -20,6 +20,10 @@
 
 *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 
+/* hidden 속성은 무엇보다 우선해서 숨김 (화면 겹침 방지 - 핵심) */
+[hidden]{ display:none !important; }
+
+
 html,body{
   margin:0; padding:0; height:100%;
   font-family:"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",system-ui,sans-serif;
